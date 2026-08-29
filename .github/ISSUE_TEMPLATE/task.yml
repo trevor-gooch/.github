@@ -1,0 +1,39 @@
+name: Task
+description: A unit of dev work for the queue — written so an agent can act on it as-is
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **After filing, apply exactly one triage label** — it is the authority for who acts next:
+        `ready` (an agent can produce a reviewable change from this as-is) ·
+        `needs-spec` (design pass first, not code) · `needs-trevor` (only Trevor can do this step).
+        In vw-scripts, also add a lane: `offline-lane` or `vw-lane`.
+        Deadlines go in a milestone, never in the title.
+  - type: textarea
+    id: context
+    attributes:
+      label: What & why
+      description: The problem or need, with enough context that a fresh session needs no other source. Name what prompted it.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: What true statements make this closable? Concrete and checkable — "the report shows X", not "improve X".
+    validations:
+      required: true
+  - type: textarea
+    id: pointers
+    attributes:
+      label: Pointers
+      description: Files, paths, prior issues/PRs, docs, evidence — where to look first.
+    validations:
+      required: false
+  - type: textarea
+    id: verification
+    attributes:
+      label: How to verify
+      description: The command, test, or check that proves the change works. If it can only be verified by hand (a VW pass, a feel-check), say so — that usually means a lane or needs-trevor label.
+    validations:
+      required: false
